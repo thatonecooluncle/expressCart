@@ -20,7 +20,7 @@ $(document).ready(function (){
         }
 
         $('#offcanvasClose').hide();
-        updateCart();
+        //updateCart();
     }
 
     $('.shipping-form input').each(function(e){
@@ -110,7 +110,7 @@ $(document).ready(function (){
         window.document.location = $(this).attr('href');
     }).hover(function(){
         $(this).toggleClass('hover');
-        updateCart();
+        //updateCart();
     });
 
     $('.product-title').dotdotdot({
@@ -200,7 +200,7 @@ $(document).ready(function (){
         })
         .done(function(msg){
             showNotification(msg.message, 'success', true);
-            updateCart();
+            //updateCart();
         })
         .fail(function(msg){
             showNotification(msg.responseJSON.message, 'danger');
@@ -264,7 +264,7 @@ $(document).ready(function (){
 
         // append data
         $('#product_opt_wrapper').append(html);
-        updateCart();
+        //updateCart();
         // add to the stored json string
         optJson[optName] = {
             optName: optName,

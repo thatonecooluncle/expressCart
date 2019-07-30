@@ -3,11 +3,53 @@
 		<input type="hidden" name="frm_referringUrl" value="{{referringUrl}}">
 		<h2 class="form-signin-heading">Please sign in</h2>
 		<div class="form-group">
-			<input type="email" id="email" name="email" class="form-control" placeholder="email address" required autofocus>
+			<input type="email" id="email" name="email" class="form-control" placeholder="Booking Number" required autofocus>
 		</div>
 		<div class="form-group">
-			<input type="password" id="password" name="password" class="form-control" placeholder="Password" required>
+			<input type="password" id="password" name="password" class="form-control" placeholder="Last Name" required>
 		</div>
 		<button class="btn btn-lg btn-primary btn-block" id="loginForm" type="submit">Sign in</button>
 	</form>
+	<script>
+		var request = require("request");
+
+var options = { 
+method: 'POST',
+  url: 'https://qabook.hollandamerica.com/api/dspm/login/v1.0.0/authenticate',
+  gzip: true,
+  qs: { companyCode: 'HAL' },
+  headers: 
+   { 'Postman-Token': 'd5904c86-b375-4a65-8002-ccf0470de226',
+     'cache-control': 'no-cache',
+     ADRUM: 'isAjax:true',
+     'Client-Id': 'secondaryFlow',
+     Connection: 'keep-alive',
+     Cookie: 'BIGipServerHALQA-BOOK_TCP_443_pl=2012559626.47873.0000; TLTSID=8B04B267853E5CCF6BBE89727DDFC3EE; TLTUID=8FF904D7895199EE38B65C53D44A618E; _sdsat_landing_page=https://qabook.hollandamerica.com/secondaryFlow/login|1564500305285; _sdsat_session_count=1; _sdsat_lt_pages_viewed=1; _sdsat_pages_viewed=1; _sdsat_traffic_source=; check=true; AMCVS_21C91F2F575539D07F000101%40AdobeOrg=1; _gcl_au=1.1.757429834.1564500306; s_ecid=MCMID%7C84821131846084444903644302718755412169; AMCV_21C91F2F575539D07F000101%40AdobeOrg=-1891778711%7CMCIDTS%7C18108%7CMCMID%7C84821131846084444903644302718755412169%7CMCAAMLH-1565105105%7C7%7CMCAAMB-1565105105%7C6G1ynYcLPuiQxYZrsz_pkqfLG9yMXBpb2zX5dvJdYQJzPXImdj0y%7CMCOPTOUT-1564507505s%7CNONE%7CMCAID%7CNONE%7CMCSYNCSOP%7C411-18115%7CvVersion%7C2.4.0; mf_user=de4ff6d1d8a3ff428bd3110b26d4ac75|; s_dfa=crbrhollandamericadevus%2Ccrbrcarnivalbrandsdevus; s_ppn=hal%3Asecondaryflow%3Aauthentication%3Alogin; gds_s=First%20Visit; s_vnum=1564642800670%26vn%3D1; s_invisit=true; s_ppvl=hal%253Asecondaryflow%253Aauthentication%253Alogin%2C26%2C26%2C167%2C1323%2C167%2C1366%2C768%2C1%2CP; mbox=session#f2ed8a0a4b5e40f08efa41538d885126#1564502183|PC#f2ed8a0a4b5e40f08efa41538d885126.28_12#1627745107; mf_aad55bff-9657-41d3-86a6-b08482f06c7f=c2804583aaa27043d3b4f16fb86ef0f0|07300622245d31834e6d564dbb8bc7d139f607a2.-864550067.1564500319015|1564500339033||1|||0|16.13|5; s_ppv=hal%253Asecondaryflow%253Aauthentication%253Alogin%2C100%2C26%2C642%2C1323%2C258%2C1366%2C768%2C1%2CP; s_nr=1564500345980-New; gds=1564500345984; s_sq=%5B%5BB%5D%5D; s_cc=true',
+     Referer: 'https://qabook.hollandamerica.com/secondaryFlow/login',
+     'Cache-Control': 'no-cache',
+     Accept: 'application/json, text/plain, */*',
+     'Content-Type': 'application/json',
+     'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.100 Safari/537.36',
+     'Accept-Language': 'en-US,en;q=0.9',
+     'Accept-Encoding': 'gzip, deflate, br',
+     Origin: 'https://qabook.hollandamerica.com',
+     Pragma: 'no-cache' },
+  body: 
+   { bookingNumber: 'CLHTVH',
+     lastName: 'aasd',
+     role: 'GIFTER',
+     clientId: 'secondaryFlow' },
+  json: true };
+
+request(options, function (error, response, body) {
+  if (error) throw new Error(error);
+
+  console.log(body.token);
+  res.status(200).json({ message: 'Token added' });
+  req.session.bookingNumber = body.bookingNumber;
+  req.session.lastName = body.lastName;
+  req.session.token = body.token;
+  sessionStorage.setItem("AuthToken", req.session.token);
+});
+	</script>
 </div>
